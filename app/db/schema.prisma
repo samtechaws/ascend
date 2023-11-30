@@ -1,0 +1,74 @@
+// schema.prisma
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider  = "postgresql"
+    url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+    directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model ship {
+    id               Int       @id @default(autoincrement())
+    regno            String
+    model            String
+    serno            String    @unique
+    lastannual       DateTime?
+    ftsn             Float?
+    ftsoh            Float?
+    hrcounter        Float?
+    torqueevent      Int?
+    statusid         Int
+    typedesignatorid Int
+    vendorid         Int
+    sortorder        Int?
+    isactive         Boolean
+    createdbyid      Int
+    updatedbyid      Int?
+    createdon        DateTime  @default(now())
+    updatedon        DateTime?
+    version          Int       @default(1)
+
+    vendor         vendor         @relation(fields: [vendorid], references: [id])
+    typedesignator typedesignator @relation(fields: [typedesignatorid], references: [id])
+    status         status         @relation(fields: [statusid], references: [id])
+}
+
+model vendor {
+    id          Int       @id @default(autoincrement())
+    name        String    @unique
+    createdbyid Int
+    updatedbyid Int?
+    createdon   DateTime  @default(now())
+    updatedon   DateTime?
+    isactive    Boolean   @default(true)
+    version     Int       @default(1)
+
+    ships ship[]
+}
+
+model typedesignator {
+    id          Int       @id @default(autoincrement())
+    name        String    @unique
+    createdbyid Int
+    updatedbyid Int?
+    createdon   DateTime  @default(now())
+    updatedon   DateTime?
+    isactive    Boolean   @default(true)
+    version     Int       @default(1)
+    ships       ship[]
+}
+
+model status {
+    id          Int       @id @default(autoincrement())
+    name        String    @unique
+    createdbyid Int
+    updatedbyid Int?
+    createdon   DateTime  @default(now())
+    updatedon   DateTime?
+    isactive    Boolean   @default(true)
+    version     Int       @default(1)
+    ships       ship[]
+}
