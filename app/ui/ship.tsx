@@ -1,5 +1,7 @@
 import prisma from '../lib/prisma'
+export const dynamic = "force-dynamic";
 async function getData() {
+
     const ships = await prisma.ship.findMany({
         where: {
             isactive: true
@@ -16,6 +18,7 @@ async function getData() {
 
 
 export default async function Ship() {
+
     const ships = await getData();
     return (
         <div>
