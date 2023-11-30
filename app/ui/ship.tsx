@@ -17,7 +17,6 @@ async function getData() {
 
 export default async function Ship() {
     const ships = await getData();
-    console.log({ ships })
     return (
         <div>
             <h1>Ship</h1>
@@ -25,7 +24,7 @@ export default async function Ship() {
                 ships.map((ship) => {
                     return (
                         <div key={ship.id}>
-                            <p>{ship.model}</p>
+                            <p>{ship.serno}</p>
                             <p>{ship.status.name}</p>
                         </div>
                     )
