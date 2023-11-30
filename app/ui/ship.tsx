@@ -12,6 +12,8 @@ async function getData() {
                 }
             }
         }
+    }).then(async () => {
+        await prisma.$disconnect()
     })
     return ships;
 }

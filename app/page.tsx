@@ -1,7 +1,6 @@
 import Ship from "./ui/ship";
 
 
-export const dynamic = "force-dynamic";
 
 export default async function Home() {
 
