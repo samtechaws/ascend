@@ -12,7 +12,7 @@ async function getData() {
                 }
             }
         },
-        cacheStrategy: { ttl: 0 },
+        cacheStrategy: { ttl: 0 }
     })
 
     return ships;
