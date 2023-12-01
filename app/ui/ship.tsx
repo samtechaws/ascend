@@ -11,9 +11,10 @@ async function getData() {
                     name: true
                 }
             }
-        }
+        },,
+        cacheStrategy: { ttl: 0 },
     })
-    await prisma.$disconnect()
+
     return ships;
 }
 
