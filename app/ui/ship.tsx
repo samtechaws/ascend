@@ -1,5 +1,6 @@
 import prisma from '../lib/prisma'
-
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
 async function getData() {
 
     const ships = await prisma.ship.findMany({
