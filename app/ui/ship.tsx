@@ -11,7 +11,7 @@ async function getData() {
                     name: true
                 }
             }
-        },,
+        },
         cacheStrategy: { ttl: 0 },
     })
 
